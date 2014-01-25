@@ -2,7 +2,7 @@
 class Track {
 	public function tracking($id){
 		//BEGIN - Open connection
-		$conn = mysql_connect('localhost', 'adminL5a3gMp', '9sSyZmcTsEYD');
+		$conn = mysql_connect('127.10.115.2', 'adminL5a3gMp', '9sSyZmcTsEYD');
 		if (!$conn) {
 		    die('Could not connect: ' . mysql_error());
 		}
