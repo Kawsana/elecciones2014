@@ -27,5 +27,28 @@ class Track {
 		mysql_close($conn);
 		//END - Close connection
 	}
+	
+	public function comment($id, $comment){
+		//BEGIN - Open connection
+		$conn = mysql_connect($this->hostDb, $this->userDb, $this->passwordDb);
+		if (!$conn) {
+		    die('Could not connect: ' . mysql_error());
+		}
+		//END - Open connection
+
+		//BEGIN - Insert
+		mysql_select_db($this->db);
+		$sql = "INSERT INTO `comment` (`id`,`comment`,`date`) VALUES ('" . $id . "','" . $comment . "', NOW())";
+		$retval = mysql_query( $sql, $conn );
+		if(! $retval )
+		{
+			die('Could not enter data: ' . mysql_error());
+		}
+		//END - Insert
+		
+		//BEGIN - Close connection
+		mysql_close($conn);
+		//END - Close connection
+	}
 }
 ?>
