@@ -11,7 +11,7 @@
 		<script type="text/javascript" src="resources/js/jquery.mobile-1.4.0.min.js"></script>
 	</head>
 	<body>
-		<div data-role="page" id="pgData">
+		<div data-role="page" id="pgData" data-dom-cache="true">
 			<div data-role="header">
 				<h1>Consulta de recinto</h1>
 			</div>
@@ -20,9 +20,13 @@
 				include ("src/track.php");
 				session_start();
 				
-				$id = $_POST["txtId"];
-				$_SESSION['id']=$id;
-				$url = "https://siae.cne.gob.ec/electoral-roll/api/voters/". $id . "/electoral-roll";
+				//$id = $_POST["txtId"];
+				if($_POST["txtId"] != null){
+					$id = $_POST["txtId"];
+					$_SESSION['id']=$id;
+				}
+				
+				$url = "https://siae.cne.gob.ec/electoral-roll/api/voters/". $_SESSION['id'] . "/electoral-roll";
 				
 				$responseJSON = file_get_contents($url);
 				$arrayData = json_decode($responseJSON);
@@ -35,7 +39,7 @@
 				//nombre
 				echo $arrayData->{'voter'}->{'fullName'};
 				?>
-				<div data-role="collapsible-set" data-inset="false">
+				<div data-role="collapsible-set" data-inset="true">
 					<div data-role="collapsible">
     					<h2>Lugar de votación</h2>
     					<p><strong>Recinto</strong></p>
@@ -64,23 +68,23 @@
 					</div>
 				</div>
 			</div>
-			<div data-role="footer">
+			<div data-role="footer" style="overflow:hidden;">
 		        <div data-role="navbar">
 		            <ul>
-		                <li><a href="../php/" data-icon="back">Consulta</a></li>
+		                <li><a href="index.html" data-icon="back" data-ajax="false">Consulta</a></li>
 		                <li><a href="#pgComments" data-icon="star" class="ui-btn-active" data-ajax="false">Sugerencias</a></li>
 		            </ul>
 		        </div>
 			</div>
 		</div>
-		<div data-role="page" id="pgComments">
+		<div data-role="page" id="pgComments" data-dom-cache="true">
 			<div data-role="header">
-					<h1>Consulta de recinto</h1>
+				<h1>Consulta de recinto</h1>
 			</div>
 			<div role="main" class="ui-content">
 				<form method="post" action="comments.php">
 					<h4>Ayúdanos a mejorar!</h4>
-					Por favor cuéntanos tus comentarios y sugerencias:
+					Por favor deja tus comentarios y sugerencias:
 					<textarea name="txtComments" id="txtComments"></textarea>
 					<input type="submit" value="Enviar" name="button" data-icon="check" ui-btn-b data-inline="true" data-mini="true">
 				</form>
