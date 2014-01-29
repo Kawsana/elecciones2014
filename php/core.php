@@ -67,8 +67,8 @@
 			<div data-role="footer">
 		        <div data-role="navbar">
 		            <ul>
-		                <li><a href="index.html" data-icon="back">Consulta</a></li>
-		                <li><a href="#pgComments" data-icon="star" class="ui-btn-active">Sugerencias</a></li>
+		                <li><a href="../php/" data-icon="back">Consulta</a></li>
+		                <li><a href="#pgComments" data-icon="star" class="ui-btn-active" data-ajax="false">Sugerencias</a></li>
 		            </ul>
 		        </div>
 			</div>
