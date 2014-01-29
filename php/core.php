@@ -20,8 +20,7 @@
 				include ("src/track.php");
 				session_start();
 				
-				//$id = $_POST["txtId"];
-				if($_POST["txtId"] != null){
+				if(isset($_POST["txtId"])){
 					$id = $_POST["txtId"];
 					$_SESSION['id']=$id;
 				}
@@ -33,7 +32,7 @@
 				
 				//BEGIN - tracking
 				$tracking = new Track();
-				$tracking->tracking($id);
+				$tracking->tracking($_SESSION['id']);
 				//END - tracking
 				
 				//nombre
