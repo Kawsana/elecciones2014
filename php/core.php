@@ -25,9 +25,9 @@
 					$_SESSION['id']=$id;
 				}
 				
-				$url = "https://siae.cne.gob.ec/electoral-roll/api/voters/". $_SESSION['id'] . "/electoral-roll";
+				$precinctUrl = "https://siae.cne.gob.ec/electoral-roll/api/voters/". $_SESSION['id'] . "/electoral-roll";
 				
-				$responseJSON = file_get_contents($url);
+				$responseJSON = file_get_contents($precinctUrl);
 				$arrayData = json_decode($responseJSON);
 				
 				//BEGIN - tracking
@@ -45,7 +45,7 @@
     					<p><?php echo $arrayData->{'voter'}->{'precinct'}->{'name'}; ?></p>
     					<p><strong>Junta</strong></p>
     					<p><?php
-						if( $arrayData->{'voter'}->{'gender'} == 'M') {
+						if($arrayData->{'voter'}->{'gender'} == 'M') {
 							$gender = "HOMBRES";
 						} else {
 							$gender = "MUJERES";
@@ -64,6 +64,17 @@
     					<p><?php echo $arrayData->{'voter'}->{'precinct'}->{'zone'}; ?></p>
     					<p><strong>Circunscripción</strong></p>
     					<p><?php echo $arrayData->{'voter'}->{'precinct'}->{'district'}; ?></p>
+					</div>
+					<div data-role="collapsible">
+						<h2>Registro electoral</h2>
+    					<p><strong>Provincia</strong></p>
+    					<p><?php echo $arrayData->{'voter'}->{'precinct'}->{'province'}; ?></p>
+    					<p><strong>Cantón</strong></p>
+    					<p><?php echo $arrayData->{'voter'}->{'precinct'}->{'canton'}; ?></p>
+    					<p><strong>Parroquia</strong></p>
+    					<p><?php echo $arrayData->{'voter'}->{'precinct'}->{'parish'}; ?></p>
+    					<p><strong>Zona</strong></p>
+    					<p><?php echo $arrayData->{'voter'}->{'precinct'}->{'zone'}; ?></p>
 					</div>
 				</div>
 			</div>
