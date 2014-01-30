@@ -81,7 +81,7 @@
 			<div data-role="footer" style="overflow:hidden;">
 		        <div data-role="navbar">
 		            <ul>
-		                <li><a href="index.html" data-icon="back" data-ajax="false">Consulta</a></li>
+		                <li><a href="index.html" data-icon="home" data-ajax="false">Salir</a></li>
 		                <li><a href="#pgComments" data-icon="star" class="ui-btn-active" data-ajax="false">Sugerencias</a></li>
 		            </ul>
 		        </div>
